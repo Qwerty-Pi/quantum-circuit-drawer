@@ -1,5 +1,6 @@
 import { Circuit } from "../src/Circuit";
 import { HadamardGate } from "../src/gates/HadamardGate";
+import { MeasurementGate } from "../src/gates/MeasurementGate";
 
 describe("Circuit constructor", () => {
   it("validates number of qubits", () => {
@@ -21,5 +22,12 @@ describe("Circuit.addGate validation", () => {
     const gate = new HadamardGate(0);
     expect(() => circuit.addGate(gate)).not.toThrow();
     expect(circuit.gates.length).toBe(1);
+  });
+
+  it("supports adding a measurement gate", () => {
+    const circuit = new Circuit(1);
+    const gate = new MeasurementGate(0);
+    circuit.addGate(gate);
+    expect(circuit.gates[0].name).toBe("M");
   });
 });

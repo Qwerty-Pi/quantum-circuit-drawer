@@ -4,7 +4,7 @@ A library for drawing quantum circuits with customizable styles. Ideal for visua
 
 ## Features
 
-- **Comprehensive Gate Support:** Includes common quantum gates like Hadamard, Pauli-X, Pauli-Y, Pauli-Z, Rotation gates (Rx, Ry, Rz), and CNOT gates.
+- **Comprehensive Gate Support:** Includes common quantum gates like Hadamard, Pauli-X, Pauli-Y, Pauli-Z, Rotation gates (Rx, Ry, Rz), CNOT gates, and measurement operations.
 - **Customizable Styles:** Adjust colors, sizes, fonts, and more to personalize your circuit diagrams.
 - **TypeScript Support:** Provides type definitions for type safety and IntelliSense support.
 - **Browser and Node.js Compatibility:** Use the library in both browser environments and Node.js applications.
@@ -197,12 +197,14 @@ renderer.draw();
 - **PauliYGate**
 - **PauliZGate**
 - **RotationGate**
+- **MeasurementGate**
 
 Each gate class implements the `IGate` interface and represents a specific quantum gate.
 
 ```typescript
 circuit.addGate(new PauliXGate(1));
 circuit.addGate(new RotationGate("Y", 2, Math.PI / 4));
+circuit.addGate(new MeasurementGate(0));
 ```
 
 ### Interfaces

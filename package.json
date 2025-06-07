@@ -1,6 +1,6 @@
 {
   "name": "quantum-circuit-drawer",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "main": "dist/quantum-circuit-drawer.js",
   "types": "build/index.d.ts",
   "scripts": {

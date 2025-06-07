@@ -112,3 +112,13 @@ export { PauliZGate };
  * ```
  */
 export { RotationGate };
+
+/**
+ * Represents a measurement operation on a single qubit.
+ *
+ * @example
+ * ```typescript
+ * circuit.addGate(new MeasurementGate(0)); // Measure qubit 0
+ * ```
+ */
+export { MeasurementGate } from "./gates/MeasurementGate";

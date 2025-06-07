@@ -97,6 +97,9 @@ export class Renderer {
       } else if (gate.name.startsWith("R")) {
         // Draw a rotation gate (Rx, Ry, Rz).
         this.drawRotationGate(gate, x);
+      } else if (gate.name === "M") {
+        // Draw a measurement gate.
+        this.drawMeasurementGate(gate, x);
       } else {
         // Draw single-qubit gates.
         gate.qubits.forEach((qubit) => {
@@ -196,6 +199,38 @@ export class Renderer {
         .text(gate.name)
         .move(x, y + gateHeight / 2)
         .font({ size: fontSize - 2, family: fontFamily, fill: fontColor })
+        .attr({ "text-anchor": "middle", "dominant-baseline": "middle" });
+    });
+  }
+
+  /**
+   * Draws a measurement gate on the circuit.
+   * @param gate - The IGate object representing the measurement gate.
+   * @param x - The x-coordinate where the gate should be drawn.
+   */
+  private drawMeasurementGate(gate: IGate, x: number): void {
+    const {
+      qubitSpacing,
+      gateWidth,
+      gateHeight,
+      gateFill,
+      gateStroke,
+      gateStrokeWidth,
+      fontSize,
+      fontFamily,
+      fontColor,
+    } = this.styles;
+    gate.qubits.forEach((qubit) => {
+      const y = qubitSpacing * (qubit + 1) - gateHeight / 2;
+      this.svg
+        .rect(gateWidth, gateHeight)
+        .move(x - gateWidth / 2, y)
+        .fill(gateFill)
+        .stroke({ width: gateStrokeWidth, color: gateStroke });
+      this.svg
+        .text("M")
+        .move(x, y + gateHeight / 2)
+        .font({ size: fontSize, family: fontFamily, fill: fontColor })
         .attr({ "text-anchor": "middle", "dominant-baseline": "middle" });
     });
   }
