@@ -40,6 +40,13 @@ export class Circuit {
    * @param gate - The quantum gate to be added to the circuit.
    */
   addGate(gate: IGate): void {
+    gate.qubits.forEach((q) => {
+      if (q < 0 || q >= this.numQubits) {
+        throw new Error(
+          `Invalid qubit index ${q}. Circuit has ${this.numQubits} qubits.`
+        );
+      }
+    });
     this.gates.push(gate);
   }
 }
