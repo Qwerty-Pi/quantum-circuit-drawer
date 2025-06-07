@@ -43,7 +43,7 @@ export class PauliYGate implements IGate {
    * ```
    */
   constructor(qubit: number) {
-    if (qubit < 0) {
+    if (!Number.isInteger(qubit) || qubit < 0) {
       throw new Error("Qubit index must be a non-negative integer.");
     }
     this.qubits = [qubit];

@@ -52,7 +52,7 @@ export class RotationGate implements IGate {
    * ```
    */
   constructor(axis: "X" | "Y" | "Z", qubit: number, angle: number) {
-    if (qubit < 0) {
+    if (!Number.isInteger(qubit) || qubit < 0) {
       throw new Error("Qubit index must be a non-negative integer.");
     }
     if (!["X", "Y", "Z"].includes(axis)) {

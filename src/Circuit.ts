@@ -31,6 +31,9 @@ export class Circuit {
    * @param numQubits - The total number of qubits in the circuit.
    */
   constructor(numQubits: number) {
+    if (!Number.isInteger(numQubits) || numQubits <= 0) {
+      throw new Error("Number of qubits must be a positive integer.");
+    }
     this.numQubits = numQubits;
   }
 

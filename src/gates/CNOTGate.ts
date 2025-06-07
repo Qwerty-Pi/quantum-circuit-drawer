@@ -48,6 +48,14 @@ export class CNOTGate implements IGate {
     if (controlQubit === targetQubit) {
       throw new Error("Control qubit and target qubit must be different.");
     }
+    if (
+      !Number.isInteger(controlQubit) ||
+      !Number.isInteger(targetQubit) ||
+      controlQubit < 0 ||
+      targetQubit < 0
+    ) {
+      throw new Error("Qubit indices must be non-negative integers.");
+    }
     this.qubits = [controlQubit, targetQubit];
   }
 }

@@ -76,6 +76,8 @@ export class Renderer {
 
     // Adjust the SVG canvas size based on the circuit dimensions.
     this.svg.size(totalWidth + gateSpacing, qubitSpacing * (numQubits + 1));
+    // Clear any previous drawing to avoid overlapping when redraw() is called.
+    this.svg.clear();
 
     // Draw horizontal lines representing the qubits.
     for (let i = 0; i < numQubits; i++) {

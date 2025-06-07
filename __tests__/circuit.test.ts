@@ -1,6 +1,14 @@
 import { Circuit } from "../src/Circuit";
 import { HadamardGate } from "../src/gates/HadamardGate";
 
+describe("Circuit constructor", () => {
+  it("validates number of qubits", () => {
+    expect(() => new Circuit(0)).toThrow("positive integer");
+    expect(() => new Circuit(-1)).toThrow("positive integer");
+    expect(() => new Circuit(1.5)).toThrow("positive integer");
+  });
+});
+
 describe("Circuit.addGate validation", () => {
   it("throws an error if qubit index is out of range", () => {
     const circuit = new Circuit(1);
