@@ -113,9 +113,9 @@ export class Renderer {
           // Draw the gate label (e.g., H, X, Y, Z).
           this.svg
             .text(gate.name)
-            .move(x, y + gateHeight / 2)
             .font({ size: fontSize, family: fontFamily, fill: fontColor })
-            .attr({ "text-anchor": "middle", "dominant-baseline": "middle" });
+            .attr({ "text-anchor": "middle", "dominant-baseline": "middle" })
+            .center(x, y + gateHeight / 2)
         });
       }
     });
@@ -138,32 +138,32 @@ export class Renderer {
     const y1 = qubitSpacing * (controlQubit + 1);
     const y2 = qubitSpacing * (targetQubit + 1);
 
-    // Draw the control dot at the control qubit line.
-    this.svg
-      .circle(8)
-      .move(x - 4, y1 - 4)
-      .fill(gateStroke);
-
     // Draw the vertical line connecting the control and target qubits.
     this.svg.line(x, y1, x, y2).stroke({ width: lineWidth, color: lineColor });
+
+    // Draw the control dot at the control qubit line.
+    this.svg
+      .circle(12)
+      .center(x, y1)
+      .fill(lineColor);
 
     // Draw the target qubit symbol (a circle with a plus sign inside).
     const gateSize = 20;
     this.svg
       .circle(gateSize)
       .move(x - gateSize / 2, y2 - gateSize / 2)
-      .fill("#fff")
-      .stroke({ width: gateStrokeWidth, color: gateStroke });
+      .fill("#ffffff00")
+      .stroke({ width: gateStrokeWidth, color: lineColor });
 
     // Draw the horizontal line of the plus sign.
     this.svg
-      .line(x - gateSize / 4, y2, x + gateSize / 4, y2)
-      .stroke({ width: gateStrokeWidth, color: gateStroke });
+      .line(x - gateSize / 2, y2, x + gateSize / 2, y2)
+      .stroke({ width: gateStrokeWidth, color: lineColor });
 
     // Draw the vertical line of the plus sign.
     this.svg
-      .line(x, y2 - gateSize / 4, x, y2 + gateSize / 4)
-      .stroke({ width: gateStrokeWidth, color: gateStroke });
+      .line(x, y2 - gateSize / 2, x, y2 + gateSize / 2)
+      .stroke({ width: gateStrokeWidth, color: lineColor });
   }
 
   /**

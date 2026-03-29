@@ -1,0 +1,61 @@
+<style>
+:root {
+    --text-color: #cccccc;
+    --background-color: #151515;
+    --selection-color: #f5c36060;
+}
+
+@media print {
+    :root {
+        --text-color: #151515;
+        --background-color: #FFFFFF;
+        --selection-color: var(--background-color);
+    }
+}
+
+* :not(mjx-container *) {
+    font-family: 'Cascadia Code';
+    ::selection {
+        color: var(--text-color);
+        background-color: var(--selection-color);
+    }
+    color: var(--text-color);
+}
+
+body {
+    font-size: 15px;
+    background-color: var(--background-color);
+}
+
+.hljs {
+    padding: 0 !important;
+    background: var(--background-color) !important;
+}
+</style>
+
+<!-- Include svg.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/svg.js/3.2.4/svg.min.js"></script>
+<!-- Include the quantum-circuit-drawer library -->
+<script src="dist/quantum-circuit-drawer.js"></script>
+
+<center><div id="circuit-container"></div></center>
+
+<script>
+  const { Circuit, Renderer, HadamardGate, CNOTGate } = QuantumCircuitDrawer;
+
+  const circuit = new Circuit(2);
+  circuit.addGate(new HadamardGate(0));
+  circuit.addGate(new CNOTGate(0, 1));
+
+  const renderer = new Renderer(circuit, "circuit-container", {
+          gateFill: "#cccccc",
+          gateStroke: "#606060",
+          lineColor: "#cccccc",
+          lineWidth: "2px",
+          gateStrokeWidth: "2px",
+          fontColor: "#151515",
+          fontSize: "20px"
+  });
+  renderer.draw();
+</script>
+
