@@ -75,7 +75,7 @@ export class Renderer {
     const totalWidth = gateSpacing * (gates.length + 1);
 
     // Adjust the SVG canvas size based on the circuit dimensions.
-    this.svg.size(totalWidth + gateSpacing, qubitSpacing * (numQubits + 1));
+    this.svg.size(totalWidth, qubitSpacing * (numQubits + 1));
     // Clear any previous drawing to avoid overlapping when redraw() is called.
     this.svg.clear();
 
