@@ -9,6 +9,8 @@ import { DefaultStyleConfig } from "./styles";
 
 import { HadamardGate } from "./gates/HadamardGate";
 import { CNOTGate } from "./gates/CNOTGate";
+import { CXGate } from "./gates/CXGate";
+import { CZGate } from "./gates/CZGate";
 import { PauliXGate } from "./gates/PauliXGate";
 import { PauliYGate } from "./gates/PauliYGate";
 import { PauliZGate } from "./gates/PauliZGate";
@@ -68,6 +70,9 @@ export { HadamardGate };
  * ```
  */
 export { CNOTGate };
+export { CXGate };
+
+export { CZGate };
 
 /**
  * Represents a Pauli-X gate applied to a single qubit.

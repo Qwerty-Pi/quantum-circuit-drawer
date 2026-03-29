@@ -92,6 +92,13 @@ export interface StyleConfig {
    * @default "#000" (black)
    */
   fontColor: string;
+
+  /**
+   * The background color.
+   * Accepts any valid CSS color string.
+   * @default "#FFF" (white)
+   */
+  backgroundColor: string;
 }
 
 /**
@@ -123,4 +130,5 @@ export const DefaultStyleConfig: StyleConfig = {
   fontSize: 14,
   fontFamily: "Arial, sans-serif",
   fontColor: "#000",
+  backgroundColor: "#FFF",
 };

@@ -38,24 +38,52 @@ body {
 <!-- Include the quantum-circuit-drawer library -->
 <script src="dist/quantum-circuit-drawer.js"></script>
 
-<center><div id="circuit-container"></div></center>
+<div style="display: flex; flex-direction: column; text-align: center;">
+  <div>Preparation of EPR Pair</div>
+  <div id="circuit-epr-pair" class="circuit-container">
+</div>
+
+<div style="display: flex; flex-direction: column; text-align: center;">
+  <div>Quantum Teleportation</div>
+  <div id="circuit-quantum-teleport" class="circuit-container">
+</div>
 
 <script>
-  const { Circuit, Renderer, HadamardGate, CNOTGate } = QuantumCircuitDrawer;
+  const { Circuit, Renderer, MeasurementGate, HadamardGate, CNOTGate, CXGate, CZGate } = QuantumCircuitDrawer;
 
-  const circuit = new Circuit(2);
-  circuit.addGate(new HadamardGate(0));
-  circuit.addGate(new CNOTGate(0, 1));
+  const circuitStyle = {
+    gateFill: "#cccccc",
+    gateStroke: "#606060",
+    lineColor: "#cccccc",
+    fontColor: "#151515",
+    backgroundColor: "#151515",
+    fontSize: "20px",
+    lineWidth: 2,
+    gateStrokeWidth: 2,
+    gateWidth: 45,
+    gateHeight: 40
+  };
 
-  const renderer = new Renderer(circuit, "circuit-container", {
-          gateFill: "#cccccc",
-          gateStroke: "#606060",
-          lineColor: "#cccccc",
-          lineWidth: "2px",
-          gateStrokeWidth: "2px",
-          fontColor: "#151515",
-          fontSize: "20px"
-  });
-  renderer.draw();
+  const drawCircuit = function(circuitName, circuit) {
+    const renderer = new Renderer(circuit, `circuit-${circuitName}`, circuitStyle);
+    renderer.draw();
+  }
+
+  {
+    const circuit = new Circuit(2);
+    circuit.addGate(new HadamardGate(0));
+    circuit.addGate(new CNOTGate(0, 1));
+    drawCircuit("epr-pair", circuit);
+  }
+
+  {
+    const circuit = new Circuit(3);
+    circuit.addGate(new CNOTGate(0, 1));
+    circuit.addGate(new HadamardGate(0));
+    circuit.addGate(new MeasurementGate([0, 1]));
+    circuit.addGate(new CXGate(1, 2));
+    circuit.addGate(new CZGate(0, 2));
+    drawCircuit("quantum-teleport", circuit);
+  }
 </script>
 

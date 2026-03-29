@@ -35,10 +35,14 @@ export class MeasurementGate implements IGate {
    *
    * @throws {Error} If the qubit index is negative.
    */
-  constructor(qubit: number) {
-    if (qubit < 0) {
-      throw new Error("Qubit index must be a non-negative integer.");
+  constructor(qubit: number | number[]) {
+    if (typeof qubit === "number") {
+      if (qubit < 0) {
+        throw new Error("Qubit index must be a non-negative integer.");
+      }
+      this.qubits = [qubit];
+    } else {
+      this.qubits = qubit;
     }
-    this.qubits = [qubit];
   }
 }
